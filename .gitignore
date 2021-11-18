@@ -1,3 +1,5 @@
 *~
 *.o
+*.aux
+*.log
 extraction-test

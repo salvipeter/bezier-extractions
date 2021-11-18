@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
   }
 
   std::cout << "Reconstructed curve:" << std::endl;
-  for (size_t k = 0; k < cpts.size(); ++k) {
+  for (size_t k = 0; k < L + d; ++k) {
     Point3D p(0, 0, 0);
     size_t i = 0;
     while (spans[i] < k)

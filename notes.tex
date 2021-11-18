@@ -1,0 +1,23 @@
+\documentclass{article}
+
+\begin{document}
+\title{Using B\'ezier extraction matrices}
+\author{P\'eter Salvi}
+\maketitle
+Given a B-spline curve of degree $d$ with $L$ segments in the form
+\[\mathcal{C}(u)=\sum_{k=0}^{L+d-1}\mathbf{P}_kN_k^{d,U}(u),\]
+where $U$ is the clamped knot vector with $d+1$ identical values at both ends,
+and $N_k^{d,U}$ are the B-spline basis functions, the $i$-th B\'ezier component ($i=0..L-1$)
+can be extracted as
+\[\hat{\mathcal{C}}_i(u)=\sum_{j=0}^d\mathbf{Q}_j^iB_j^d(u),\]
+where $B_j^d$ are the Bernstein polynomials and
+\[\mathbf{Q}_j^i=\sum_{k=0}^d\mathbf{P}_{k+s_i-d}C^i_k,j,\]
+because of the extraction relation
+\[N_k^{d,U}(u)=\sum_{j=0}^dC^i_{k+d-s_i,j}B_j^d(u),\]
+$\mathbf{C}^i$ being the $i$-th extraction matrix of the degree-$d$ knot vector $U$,
+and $s_i$ denoting the span index of the $i$-th segment.
+
+Conversely, a B-spline control point $\mathbf{P}_k$ can be restored from a
+suitable B\'ezier segment (i.e., one that is in the same span), using the formula
+\[\mathbf{P}_k=\sum_{j=0}^d\mathbf{Q}_j^i\left(\mathbf{C}^{i^{-1}}\right)_{j,k+d-s_i}.\]
+\end{document}
