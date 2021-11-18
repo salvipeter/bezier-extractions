@@ -4,8 +4,8 @@
 \title{Using B\'ezier extraction matrices}
 \author{P\'eter Salvi}
 \maketitle
-Given a B-spline curve of degree $d$ with $L$ segments in the form
-\[\mathcal{C}(u)=\sum_{k=0}^{L+d-1}\mathbf{P}_kN_k^{d,U}(u),\]
+Given a B-spline curve of degree $d$ with $L$ segments and $n$ control points in the form
+\[\mathcal{C}(u)=\sum_{k=0}^{n-1}\mathbf{P}_kN_k^{d,U}(u),\]
 where $U$ is the clamped knot vector with $d+1$ identical values at both ends,
 and $N_k^{d,U}$ are the B-spline basis functions, the $i$-th B\'ezier component ($i=0..L-1$)
 can be extracted as

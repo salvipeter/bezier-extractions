@@ -23,12 +23,12 @@ void writeCurve(const BSCurve &curve, double from, double to,
 }
 
 int main(int argc, char **argv) {
-  size_t d = 3, L = 3; // L is the number of segments
-  DoubleVector knots = {0,0,0,0,1,3,4,4,4,4};
-  PointVector cpts = { {0,0,0},{1,1,0},{2,1,0},{3,2,0},{4,1,0},{5,0,0} };
-  size_t spans[] = {3, 4, 5};
+  size_t d = 3, L = 4; // L is the number of segments
+  DoubleVector knots = {0,0,0,0,1,3,3,4,6,6,6,6};
+  PointVector cpts = { {0,0,0},{1,1,0},{2,1,0},{3,2,0},{4,2,0},{5,1,0},{6,0,0},{7,0,0} };
+  size_t spans[] = {3, 4, 6, 7};
 
-  writeCurve(BSCurve(d, knots, cpts), 0, 4, "/tmp/curve.obj", 100);
+  writeCurve(BSCurve(d, knots, cpts), knots.front(), knots.back(), "/tmp/curve.obj", 100);
 
   std::vector<PointVector> Q(L);
 
@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
   }
 
   std::cout << "Reconstructed curve:" << std::endl;
-  for (size_t k = 0; k < L + d; ++k) {
+  for (size_t k = 0; k < cpts.size(); ++k) {
     Point3D p(0, 0, 0);
     size_t i = 0;
     while (spans[i] < k)
