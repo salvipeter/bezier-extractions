@@ -47,16 +47,15 @@ int main(int argc, char **argv) {
   }
 
   std::cout << "Reconstructed curve:" << std::endl;
-  for (size_t j = 0; j < cpts.size(); ++j) {
+  for (size_t k = 0; k < cpts.size(); ++k) {
     Point3D p(0, 0, 0);
-    for (size_t i = 0; i < L; ++i) {
-      if (spans[i] - d > j || spans[i] < j)
-        continue;
-      auto Cinv = C[i].inverse();
-      for (size_t k = 0; k <= d; ++k)
-        p += Q[i][k] * Cinv(k, j + d - spans[i]);
-    }
-    std::cout << p << std::endl;
+    size_t i = 0;
+    while (spans[i] < k)
+      ++i;
+    auto Cinv = C[i].inverse();
+    for (size_t j = 0; j <= d; ++j)
+      p += Q[i][j] * Cinv(j, k + d - spans[i]);
+    std::cout << p << " (" << (p - cpts[k]).norm() << ')' << std::endl;
   }
 
   return 0;
